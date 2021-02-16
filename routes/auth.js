@@ -141,7 +141,7 @@ router.post('/reset', (req, res) =>{
                 await condidate.save()
                 await transporter.sendMail(resetEmail(condidate.email, token))
                 res.redirect('/auth/login')
-                res.flash('errLog', 'Письмо было отправлено на почту')
+                req.flash('errLog', 'Письмо было отправлено на почту')
             } else{
                 req.flash('errorReset', 'Такой почты нет')
                 res.redirect('/auth/reset')
