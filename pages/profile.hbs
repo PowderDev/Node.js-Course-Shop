@@ -1,0 +1,41 @@
+<h1>Профиль</h1>
+
+<div class="row">
+    <div class="col s6">
+        {{#if user.avatarURL}}
+        <img class="avatar" src="{{user.avatarURL}}" alt="{{user.name}}">
+        {{else}}
+        <p>Аватара нет</p>
+        {{/if}}
+    </div>
+
+    <div class="col s6">
+        <form action="/profile" method="POST" enctype="multipart/form-data">
+            <p>Ваш Email: <strong>{{user.email}}</strong></p>
+
+            <div class="input-field">
+                <input name='name' id="name" type="text" class="validate" required value="{{user.name}}">
+                <span class="helper-text" data-error="Введите имя" data-success="right"></span>
+            </div>
+
+            <div class="file-field input-field">
+                <div class="btn">
+                    <span>Аватар</span>
+                    <input type="file" name="avatar">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text"
+                        placeholder="Загрузите файл или воспользуетесь URL адресом">
+                </div>
+            </div>
+
+            <div class="input-field">
+                <input type="text" placeholder="Вы можете засунуть суда URL нового автара" name="avatarTextURL">
+            </div>
+
+            <input type="hidden" name="_csrf" value="{{csrf}}">
+
+            <button class="btn" type="submit">Изменить</button>
+        </form>
+    </div>
+</div>
